@@ -27,10 +27,10 @@ for model in structure:
             else:
                 for atom in residue:
                     cdx_coor.append(atom.coord)  # arr координат[x,y,z]
-print(chain_ids)
-print(len(chain_com))  # 15шт
-print(len(lig_coor))  # 15шт
-print(len(cdx_coor))  # 86шт
+# print(chain_ids)
+# print(len(chain_com))  # 15шт
+# print(len(lig_coor))  # 15шт
+# print(len(cdx_coor))  # 86шт
 
 for i in range(len(lig_coor)):  #  все возможные векторы между cdx и lig
         for j in range(len(cdx_coor)):

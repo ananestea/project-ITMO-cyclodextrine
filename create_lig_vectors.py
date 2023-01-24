@@ -24,22 +24,21 @@ for i in range(len(chain_com)):  # 23-33 добавляет в массив вс
         for j in range(len(chain_com)):
             if i!=j:
                 vector = chain_com[i]-chain_com[j]
-                b = float(1) * (i + 1)
+                b = float(1) * (1)
                 a = np.linalg.norm(vector)
-                xc = -(chain_com[0][0] + (chain_com[1][0] - chain_com[0][0]) * float(b)) / a  # изменяет длину вектора, сохраняя расстояние (это вот все снизу и сверху до for model in structure)
-                yc = -(chain_com[0][1] + (chain_com[1][1] - chain_com[0][1]) * float(b)) / a
-                zc = -(chain_com[0][2] + (chain_com[1][2] - chain_com[0][2]) * float(b)) / a
+                xc = (vector[0]/a)*b # изменяет длину вектора, сохраняя расстояние (это вот все снизу и сверху до for model in structure)
+                yc = (vector[1]/a)*b
+                zc = (vector[2]/a)*b
                 new_vector = np.array([xc, yc, zc])
                 
                 lig_vectors.append(new_vector)
-# print(len(lig_vectors))
-
+print(len(lig_vectors)) # 210
 
 for x in range (len(lig_vectors)):  # 37-51  строит все возможные векторы из массива (210шт)
     trans_vector =lig_vectors[x]
     # print(trans_vector)
 
-    # structure = parser.get_structure('Cyclodextrine_ligand_names', "Cyclodextrine_ligand_names.pdb")  # id,file-name
+    structure = parser.get_structure('Cyclodextrine_ligand_names', "Cyclodextrine_ligand_names.pdb")  # id,file-name
     b = float(1) * (x + 1)
     for model in structure:
         for chain in model:
