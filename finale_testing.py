@@ -104,14 +104,19 @@ for i in range(len(chain_com)):  # 23-33 добавляет в массив вс
 print(lig_vectors[0])
 new_vector=lig_vectors[0]
 
-for degree in range(15): # будет смещение на 3 градуса
+for degree in range(360): # будет смещение на 3 градуса
     structure = parser.get_structure('Cyclodextrine_ligand_names', "Cyclodextrine_ligand_names.pdb")  # id,file-name
     theta = np.deg2rad(degree) # градус смещени
     Xrotation_matrix = np.array([[1, 0, 0], [0, cos(theta), -sin(theta)], [0, sin(theta), cos(theta)]])
     Yrotation_matrix = np.array([[cos(theta), 0, sin(theta)], [0, 1, 0], [-sin(theta), 0, cos(theta)]])
     Zrotation_matrix = np.array([[cos(theta), -sin(theta), 0], [sin(theta), cos(theta), 0], [0, 0, 1]])
-    rotation_matrix = R.from_euler('zyx', 3, degrees=True)
-
+    # rotation_matrix = R.from_euler('xz', 15, degrees=True)
+    # n= np.squeeze(np.asarray(90))
+    # r = R.from_euler('zxy', n, degrees=True)
+    # rotation_matrix = r.as_quat().shape
+    # rotation_matrix = Xrotation_matrix * Yrotation_matrix * Zrotation_matrix
+    # rotation_matrix = np.array([[cos(theta)*cos(theta), sin(theta)*sin(theta)*cos(theta)-cos(theta)*sin(theta), cos(theta)*sin(theta)*cos(theta) + sin(theta)*sin(theta)],[cos(theta)*sin(theta), sin(theta)*sin(theta)*sin(theta)+cos(theta)*cos(theta), cos(theta)*sin(theta)*sin(theta)-sin(theta)*cos(theta)],[-sin(theta), sin(theta)*cos(theta), cos(theta)*cos(theta)]])
+    rotation_matrix = np.array([[cos(theta)*cos(theta), -sin(theta)*cos(theta), sin(theta)],[sin(theta)*sin(theta)*cos(theta) + sin(theta)*cos(theta), -sin(theta)*sin(theta)*sin(theta)+cos(theta)*cos(theta), -sin(theta)*cos(theta)],[sin(theta)*sin(theta)-sin(theta)*cos(theta)*cos(theta), sin(theta)*cos(theta)+sin(theta)*sin(theta)*cos(theta), cos(theta)*cos(theta)]]) # мейби неправильная 
 
 
     for model in structure:
