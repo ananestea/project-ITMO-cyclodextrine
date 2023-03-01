@@ -105,7 +105,7 @@ for i in range(len(chain_com)):  # 23-33 добавляет в массив вс
 print(lig_vectors[0])
 new_vector=lig_vectors[0]
 
-for degree in range(350): # будет смещение на 3 градуса
+for degree in range(35): # будет смещение на 3 градуса
     structure = parser.get_structure('Cyclodextrine_ligand_names', "Cyclodextrine_ligand_names.pdb")  # id,file-name
     theta = np.deg2rad(degree) # градус смещени 
     rotation_matrix = np.array([[cos(theta), -sin(theta), 0], [sin(theta), cos(theta), 0], [0, 0, 1]])
