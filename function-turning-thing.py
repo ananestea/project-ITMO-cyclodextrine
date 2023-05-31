@@ -27,9 +27,9 @@ for model in structure:
                 for atom in residue:
                     chain_com.append(atom.coord)  # arr координат[x,y,z]
 
-print(chain_ids)
-print(chain_ids[1])
-print(len(chain_com))
+# print(chain_ids)
+# print(chain_ids[1])
+# print(len(chain_com))
 
 
 for i in range(len(chain_com)):  # 23-33 добавляет в массив все возможные векторы
@@ -123,32 +123,15 @@ for x in range (len(lig_vectors)):  # 37-51  строит все возможн�
                     check_structure.append(0)
                     
         lig_coor.clear()
-        cdx_coor.clear()
-#    print(check_structure)    
+        cdx_coor.clear()  
     if 0 not in check_structure:
         good_vectors.append(vector)
     check_structure.clear()
 
 
-# print(check_structure)
-# # print(len(lig_vectors)) # 210 шт
-# print(lig_vectors) 
 print(len(good_vectors)) #1892 при +векторе
 print(good_vectors)
 
-# for x in range (len(good_vectors)):  # 37-51  строит все возможные векторы из массива (210шт)
-#     trans_vector =good_vectors[x]
-#     structure = parser.get_structure('Cyclodextrine_ligand_names', "Cyclodextrine_ligand_names.pdb")  # id,file-name
-#     b = float(1) * (x + 1)
-#     for model in structure:
-#         for chain in model:
-#             for residue in chain:
-#                 if residue.get_id() != chain_ids[0]: # если лиганд (в данном случае не протеин), то применить то, что дальше, а дальше цикл для смещения координат атомов лиганда
-#                     for atom in residue:
-#                         atom.transform(rotation_matrix, trans_vector)  # right mrx, tran mx
-                            
-#     io.set_structure(structure)  # create file
-#     io.save('Cyclodextrine_ligand_names' + '_' + str(b) + '.pdb')  # save file
     
 for i in range(int(20)):
     structure = parser.get_structure('Cyclodextrine_ligand_names_good', "Cyclodextrine_ligand_names_good.pdb")
@@ -189,10 +172,3 @@ for i in range(int(20)):
 
     io.set_structure(structure)  # create file
     io.save('Cyclodextrine_ligand_names_good' + '_' + str(-b) + '.pdb')  # save file
-    
-# print(len(good_vectors))
-
-def blagblah():
-    """
-    ofjgo[erwigj description of function
-    """

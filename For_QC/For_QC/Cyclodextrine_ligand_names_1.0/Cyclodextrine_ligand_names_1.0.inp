@@ -1,0 +1,8 @@
+! RKS B3LYP d3 def2-SVP def2-SVP/C RIJCOSX Largeprint
+%scf 
+MaxIter 500
+end 
+%maxcore 2048 
+%pal nprocs 24 
+end
+*xyzfile 0 1 Cyclodextrine_ligand_names_1.0.xyz
