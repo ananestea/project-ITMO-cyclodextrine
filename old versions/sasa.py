@@ -137,21 +137,35 @@ def creating_model(ranges, structure_name, coeff, good_vectors, chain_ids):
     parser = PDB.PDBParser()
     rotation_matrix = PDB.rotmat(PDB.Vector([0, 0, 0]), PDB.Vector([0, 0, 0]))
     io = PDB.PDBIO()
+    good_vectors_models =[]
     for i in range(ranges):
         structure = parser.get_structure(str(structure_name), structure_name)
         b = float(1) * (i + 1)
-        vector = good_vectors[0]
-        a = int(coeff) * np.linalg.norm(vector)
 
-        for model in structure:
-            for chain in model:
-                for residue in chain:
-                    if residue.get_id() == chain_ids[0]:
-                        for atom in residue:
-                            atom.transform(rotation_matrix, creating_vector(vector, a, b)) 
+        for f in range(len(good_vectors)):
+          vector = good_vectors[f]
+          a = int(coeff) * np.linalg.norm(vector)
 
-        io.set_structure(structure)
-        io.save('Cyclodextrine_ligand_names' + '_' + str(b) + '.pdb') 
+          for model in structure:
+              for chain in model:
+                  for residue in chain:
+                      if residue.get_id() == chain_ids[0]:
+                          for atom in residue:
+                              atom.transform(rotation_matrix, creating_vector(vector, a, b)) 
+
+          io.set_structure(structure)
+          a = io.save('Cyclodextrine_ligand_names'+ '_' + str(b) + '.pdb')
+
+          good_vectors_models.append(a)
+          
+def sasa_creation(models):
+    
+    for i in range(len(models)):
+        model = models[i]
+        id_separator(model)
+        
+
+    
 
 def make_good_vectors(vectors, structure_name, chains_ids):
 
@@ -183,8 +197,8 @@ def main():
     vectors = ligand_vectors(1, chains_com[0])
     print(len(vectors))
     good_vectors=make_good_vectors(vectors,structure_name, chains_ids)
-    creating_model(20, structure_name, 1, good_vectors, chains_ids)
-    creating_model(20, structure_name, -1, good_vectors, chains_ids)
+    creating_model(5, structure_name, 1, good_vectors, chains_ids)
+    creating_model(5, structure_name, -1, good_vectors, chains_ids)
 
 
 if __name__ == "__main__":
